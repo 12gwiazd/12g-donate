@@ -1,3 +1,4 @@
+/* Reset i podstawowe style */
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +17,10 @@ body {
     padding: 0 20px;
 }
 
-/* Header styles */
+/* Header */
 .header {
     background-color: #eaeaea;
-    padding: 10px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #ddd;
 }
 
@@ -29,8 +30,8 @@ body {
 
 /* Main content */
 .main-content {
-    background-color: #fff;
     padding: 40px 0;
+    background-color: #fff;
 }
 
 h1 {
@@ -39,51 +40,184 @@ h1 {
     color: #333;
 }
 
-.donation-widgets {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.widget-container {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.widget-container h2 {
+h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-.paypal-widget,
-.payu-widget {
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* Payment options */
+.payment-option {
+    text-align: center;
+    margin: 20px 0;
 }
 
-.payment-iframe {
-    width: 100%;
-    min-height: 200px;
-    border: 1px solid #ddd;
+.payment-option h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.payment-description {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.payment-button {
+    display: inline-block;
+    background: #00AFF0;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.payment-button:hover {
+    background: #0099cc;
+}
+
+/* Amount options */
+.amount-options {
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 400px;
+}
+
+.amount-option {
+    position: relative;
+}
+
+.amount-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.amount-option label {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.amount-option input[type="radio"]:checked + label {
+    background-color: #00AFF0;
+    border-color: #00AFF0;
+    color: white;
+}
+
+.amount-option label:hover {
+    background-color: #e9ecef;
+}
+
+.amount-option input[type="radio"]:checked + label:hover {
+    background-color: #0099cc;
+}
+
+/* Custom amount input */
+.custom-amount-wrapper {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 0 15px;
+}
+
+.custom-amount-input {
+    width: 60px;
+    padding: 8px 5px;
+    border: none;
+    background: white;
+    font-size: 16px;
+    text-align: center;
+    color: #495057;
     border-radius: 4px;
-    background-color: #fff;
+    -moz-appearance: textfield;
+}
+
+.custom-amount-input::-webkit-outer-spin-button,
+.custom-amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-amount-input:focus {
+    outline: none;
+}
+
+.custom-amount-input::placeholder {
+    color: #adb5bd;
+}
+
+.currency-symbol {
+    font-size: 16px;
+    color: white;
+}
+
+/* Form containers */
+.paypal-form-container,
+.payu-form-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.paypal-button,
+.payu-button {
+    background: #00AFF0;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.paypal-button:hover,
+.payu-button:hover {
+    background: #0099cc;
+}
+
+.paypal-button:disabled,
+.payu-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Back button */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    color: #00AFF0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    text-decoration: underline;
 }
 
 /* Footer */
 .footer {
     background-color: #252525;
-    color: #fff;
+    color: white;
     padding: 20px 0;
+    text-align: center;
+}
+
+/* Text center utility */
+.text-center {
     text-align: center;
 }
 

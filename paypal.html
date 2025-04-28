@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wpłata przez PayPal</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            margin: 0;
-            padding: 10px;
-            background: transparent;
-            font-family: Arial, sans-serif;
-        }
         .paypal-container {
             width: 100%;
             min-height: 200px;
@@ -18,170 +13,159 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
-        .amount-options {
-            margin-bottom: 15px;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            max-width: 400px;
-        }
-        .amount-option {
+        .paypal-widget-wrapper {
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+            float: left;
             position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .amount-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
+        .paypal-widget-wrapper::after {
+            content: "";
+            display: table;
+            clear: both;
         }
-        .amount-option label {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            font-weight: 500;
-            color: #495057;
-        }
-        .amount-option input[type="radio"]:checked + label {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: white;
-        }
-        .amount-option label:hover {
-            background-color: #e9ecef;
-        }
-        .amount-option input[type="radio"]:checked + label:hover {
-            background-color: #0069d9;
-        }
-        .custom-amount-wrapper {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            padding: 0 15px;
-        }
-        .custom-amount-input {
-            width: 60px;
-            padding: 8px 5px;
-            border: none;
-            background: white;
-            font-size: 16px;
-            text-align: center;
-            color: #495057;
-            border-radius: 4px;
-            -moz-appearance: textfield;
-        }
-        .custom-amount-input::-webkit-outer-spin-button,
-        .custom-amount-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .custom-amount-input:focus {
-            outline: none;
-        }
-        .custom-amount-input::placeholder {
-            color: #adb5bd;
-        }
-        .currency-symbol {
-            font-size: 16px;
-            color: white;
-        }
-        .paypal-form-container {
-            text-align: center;
-            margin-top: 20px;
+        #paypal-container-X4VF849348HHE {
+
         }
     </style>
 </head>
 <body>
-    <div class="paypal-container">
-        <div class="amount-options">
-            <div class="amount-option">
-                <input type="radio" name="amount_option" value="25.00" id="amount_25" checked>
-                <label for="amount_25">25 zł</label>
-            </div>
-            <div class="amount-option">
-                <input type="radio" name="amount_option" value="50.00" id="amount_50">
-                <label for="amount_50">50 zł</label>
-            </div>
-            <div class="amount-option">
-                <input type="radio" name="amount_option" value="100.00" id="amount_100">
-                <label for="amount_100">100 zł</label>
-            </div>
-            <div class="amount-option">
-                <input type="radio" name="amount_option" value="200.00" id="amount_200">
-                <label for="amount_200">200 zł</label>
-            </div>
-            <div class="amount-option">
-                <input type="radio" name="amount_option" value="custom" id="amount_custom">
-                <label for="amount_custom">
-                    <span class="label-text">Inna kwota</span>
-                    <div class="custom-amount-wrapper">
-                        <span class="label-text">Inna kwota:</span>
-                        <input type="number" id="custom_amount_paypal" class="custom-amount-input" min="1" step="1" placeholder="0">
-                        <span class="currency-symbol">zł</span>
-                    </div>
-                </label>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="12gwiazd-logo.png" alt="12 Gwiazd Logo">
             </div>
         </div>
+    </header>
 
-        <div class="paypal-form-container">
-            <form action="https://www.paypal.com/donate" method="post" target="_top" id="paypal-form">
-                <input type="hidden" name="business" value="TWÓJ_EMAIL_PAYPAL">
-                <input type="hidden" name="item_name" value="Wsparcie produkcji filmu 'Marzenie św. Maksymiliana'">
-                <input type="hidden" name="currency_code" value="PLN">
-                <input type="hidden" name="amount" id="paypal_amount" value="25.00">
-                <input type="image" src="https://www.paypalobjects.com/pl_PL/PL/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Przekaż darowiznę przy użyciu przycisku PayPal">
-                <img alt="" border="0" src="https://www.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
-            </form>
+    <main class="main-content">
+        <div class="container">
+
+
+            <h1>Wpłata przez PayPal</h1>
+            
+            <div class="paypal-widget-wrapper">
+                <script
+                src="https://www.paypal.com/sdk/js?client-id=BAAXGiJ9InohuNKkofrujQwGbZXxzPl9FB1j2guyFDvJlCixh_cegyR0j5oW2sZIYsZqHM5yza_1vGnFiM&components=hosted-buttons&disable-funding=venmo&currency=PLN">
+                </script>
+                
+                <div id="paypal-container-X4VF849348HHE"></div>
+                <script>
+                    paypal.HostedButtons({
+                        hostedButtonId: "X4VF849348HHE",
+                    }).render("#paypal-container-X4VF849348HHE")
+                </script>
+            </div>
+
+            <div class="paypal-container">
+                <div class="amount-options">
+                    <div class="amount-option">
+                        <input type="radio" name="amount_option" value="25" id="amount_25" checked>
+                        <label for="amount_25">25 zł</label>
+                    </div>
+                    <div class="amount-option">
+                        <input type="radio" name="amount_option" value="50" id="amount_50">
+                        <label for="amount_50">50 zł</label>
+                    </div>
+                    <div class="amount-option">
+                        <input type="radio" name="amount_option" value="100" id="amount_100">
+                        <label for="amount_100">100 zł</label>
+                    </div>
+                    <div class="amount-option">
+                        <input type="radio" name="amount_option" value="200" id="amount_200">
+                        <label for="amount_200">200 zł</label>
+                    </div>
+                    <div class="amount-option">
+                        <input type="radio" name="amount_option" value="custom" id="amount_custom">
+                        <label for="amount_custom">
+                            <span class="label-text">Inna kwota</span>
+                            <div class="custom-amount-wrapper">
+                                <span class="label-text">Inna kwota:</span>
+                                <input type="number" id="custom_amount" class="custom-amount-input" min="1" step="1" placeholder="0">
+                                <span class="currency-symbol">zł</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="paypal-form-container">
+                    <form id="paypal-form" action="https://www.paypal.com/donate" method="post" target="_blank">
+                        <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
+                        <input type="hidden" name="amount" id="paypal_amount" value="25.00">
+                        <input type="hidden" name="currency_code" value="PLN">
+                        <button type="submit" id="paypal-submit" class="paypal-button">
+                            Wpłać przez PayPal
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="index.html" class="back-button">← Powrót do strony głównej</a>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 12 Gwiazd. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
 
     <script>
-        const amountOptionsPayPal = document.querySelectorAll('input[name="amount_option"]');
-        const customAmountInputPayPal = document.getElementById('custom_amount_paypal');
+        function generateSessionId() {
+            return 'WSPARCIE_FILM_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        const amountOptions = document.querySelectorAll('input[name="amount_option"]');
+        const customAmountInput = document.getElementById('custom_amount');
         const customAmountWrapper = document.querySelector('.custom-amount-wrapper');
         const labelText = document.querySelector('.label-text');
         const paypalAmountField = document.getElementById('paypal_amount');
         const paypalForm = document.getElementById('paypal-form');
+        const paypalSubmitButton = document.getElementById('paypal-submit');
 
-        amountOptionsPayPal.forEach(option => {
+        amountOptions.forEach(option => {
             option.addEventListener('change', function() {
                 if (this.value === 'custom') {
                     customAmountWrapper.style.display = 'flex';
                     labelText.style.display = 'none';
-                    customAmountInputPayPal.focus();
-                    if(customAmountInputPayPal.value) {
-                        paypalAmountField.value = parseFloat(customAmountInputPayPal.value).toFixed(2);
+                    customAmountInput.focus();
+                    if(customAmountInput.value) {
+                        paypalAmountField.value = parseFloat(customAmountInput.value).toFixed(2);
                     } else {
                         paypalAmountField.value = '1.00';
                     }
                 } else {
                     customAmountWrapper.style.display = 'none';
                     labelText.style.display = 'inline';
-                    customAmountInputPayPal.value = '';
-                    paypalAmountField.value = this.value;
+                    customAmountInput.value = '';
+                    paypalAmountField.value = this.value + '.00';
                 }
+                paypalSubmitButton.disabled = false;
             });
         });
 
-        customAmountInputPayPal.addEventListener('input', function() {
+        customAmountInput.addEventListener('input', function() {
             const amount = parseFloat(this.value);
             if (!isNaN(amount) && amount >= 1) {
                 paypalAmountField.value = amount.toFixed(2);
+                paypalSubmitButton.disabled = false;
             } else if (this.value === '') {
                 paypalAmountField.value = '1.00';
+                paypalSubmitButton.disabled = true;
             }
         });
 
-        const initialSelectedOption = document.querySelector('input[name="amount_option"]:checked');
-        if (initialSelectedOption.value !== 'custom') {
-            paypalAmountField.value = initialSelectedOption.value;
+        const initialSelected = document.querySelector('input[name="amount_option"]:checked');
+        if (initialSelected.value !== 'custom') {
+            paypalAmountField.value = initialSelected.value + '.00';
+            paypalSubmitButton.disabled = false;
         }
     </script>
 </body>

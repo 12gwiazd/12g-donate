@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wesprzyj produkcję filmu "Marzenie św. Maksymiliana"</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-columns {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .payment-column {
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .payment-column h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .paypal-widget-wrapper {
+            text-align: center;
+            width: 100%;
+        }
+        .payu-widget-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .amount-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .payu-form-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .payment-columns {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -19,15 +67,72 @@
         <div class="container">
             <h1>Wesprzyj produkcję filmu "Marzenie św. Maksymiliana"</h1>
             
-            <div class="donation-widgets">
-                <div class="widget-container">
+            <div class="payment-columns">
+                <div class="payment-column">
                     <h2>Wpłata przez PayPal</h2>
-                    <iframe src="paypal.html" class="payment-iframe" frameborder="0" scrolling="no"></iframe>
+                    <div class="paypal-widget-wrapper">
+                        <script
+                        src="https://www.paypal.com/sdk/js?client-id=BAAXGiJ9InohuNKkofrujQwGbZXxzPl9FB1j2guyFDvJlCixh_cegyR0j5oW2sZIYsZqHM5yza_1vGnFiM&components=hosted-buttons&disable-funding=venmo&currency=PLN">
+                        </script>
+                        
+                        <div id="paypal-container-X4VF849348HHE"></div>
+                        <script>
+                            paypal.HostedButtons({
+                                hostedButtonId: "X4VF849348HHE",
+                            }).render("#paypal-container-X4VF849348HHE")
+                        </script>
+                    </div>
                 </div>
 
-                <div class="widget-container">
+                <div class="payment-column">
                     <h2>Wpłata przez PayU</h2>
-                    <iframe src="payu.html" class="payment-iframe" frameborder="0" scrolling="no"></iframe>
+                    <div class="payu-widget-wrapper">
+                        <div class="amount-options">
+                            <div class="amount-option">
+                                <input type="radio" name="amount_option_payu" value="25" id="amount_25_payu" checked>
+                                <label for="amount_25_payu">25 zł</label>
+                            </div>
+                            <div class="amount-option">
+                                <input type="radio" name="amount_option_payu" value="50" id="amount_50_payu">
+                                <label for="amount_50_payu">50 zł</label>
+                            </div>
+                            <div class="amount-option">
+                                <input type="radio" name="amount_option_payu" value="100" id="amount_100_payu">
+                                <label for="amount_100_payu">100 zł</label>
+                            </div>
+                            <div class="amount-option">
+                                <input type="radio" name="amount_option_payu" value="200" id="amount_200_payu">
+                                <label for="amount_200_payu">200 zł</label>
+                            </div>
+                            <div class="amount-option">
+                                <input type="radio" name="amount_option_payu" value="custom" id="amount_custom_payu">
+                                <label for="amount_custom_payu">
+                                    <span class="label-text">Inna kwota</span>
+                                    <div class="custom-amount-wrapper">
+                                        <span class="label-text">Inna kwota:</span>
+                                        <input type="number" id="custom_amount_payu" class="custom-amount-input" min="1" step="1" placeholder="0">
+                                        <span class="currency-symbol">zł</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="payu-form-container">
+                            <form id="payu-form" method="POST">
+                                <input type="hidden" name="merchant_id" value="fBk81JaF">
+                                <input type="hidden" name="pos_id" value="4366502">
+                                <input type="hidden" name="session_id" id="session_id" value="">
+                                <input type="hidden" name="amount" id="payu_amount" value="2500">
+                                <input type="hidden" name="currency" value="PLN">
+                                <input type="hidden" name="description" value="Wsparcie produkcji filmu 'Marzenie św. Maksymiliana'">
+                                <input type="hidden" name="notify_url" value="https://donate.12gwiazd.pl/thankyou.html">
+                                <input type="hidden" name="continue_url" value="https://donate.12gwiazd.pl/thankyou.html">
+                                <button type="button" id="payu-submit" class="payu-button">
+                                    Wpłać przez PayU
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,5 +143,79 @@
             <p>&copy; 2025 12 Gwiazd. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
+
+    <script>
+        function generateSessionId() {
+            return 'WSPARCIE_FILM_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        const amountOptionsPayU = document.querySelectorAll('input[name="amount_option_payu"]');
+        const customAmountInputPayU = document.getElementById('custom_amount_payu');
+        const customAmountWrapper = document.querySelector('.custom-amount-wrapper');
+        const labelText = document.querySelector('.label-text');
+        const payuAmountField = document.getElementById('payu_amount');
+        const payuForm = document.getElementById('payu-form');
+        const payuSubmitButton = document.getElementById('payu-submit');
+        const sessionIdField = document.getElementById('session_id');
+
+        // Inicjalizacja formularza
+        function initializeForm() {
+            sessionIdField.value = generateSessionId();
+        }
+
+        initializeForm();
+
+        // Obsługa kliknięcia przycisku PayU
+        payuSubmitButton.addEventListener('click', function() {
+            // Tworzymy nowe okno
+            const payuWindow = window.open('', '_blank');
+            
+            // Ustawiamy action na endpoint PayU
+            payuForm.action = 'https://secure.payu.com/api/v2_1/orders';
+            
+            // Wysyłamy formularz do nowego okna
+            payuForm.target = '_blank';
+            payuForm.submit();
+        });
+
+        amountOptionsPayU.forEach(option => {
+            option.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customAmountWrapper.style.display = 'flex';
+                    labelText.style.display = 'none';
+                    customAmountInputPayU.focus();
+                    if(customAmountInputPayU.value) {
+                        const amountInGrosz = Math.round(parseFloat(customAmountInputPayU.value) * 100);
+                        payuAmountField.value = amountInGrosz > 0 ? amountInGrosz : 100;
+                    } else {
+                        payuAmountField.value = 100;
+                    }
+                } else {
+                    customAmountWrapper.style.display = 'none';
+                    labelText.style.display = 'inline';
+                    customAmountInputPayU.value = '';
+                    payuAmountField.value = parseInt(this.value) * 100;
+                }
+                payuSubmitButton.disabled = false;
+            });
+        });
+
+        customAmountInputPayU.addEventListener('input', function() {
+            const amount = parseFloat(this.value);
+            if (!isNaN(amount) && amount >= 1) {
+                payuAmountField.value = Math.round(amount * 100);
+                payuSubmitButton.disabled = false;
+            } else if (this.value === '') {
+                payuAmountField.value = 100;
+                payuSubmitButton.disabled = true;
+            }
+        });
+
+        const initialSelectedPayU = document.querySelector('input[name="amount_option_payu"]:checked');
+        if (initialSelectedPayU.value !== 'custom') {
+            payuAmountField.value = parseInt(initialSelectedPayU.value) * 100;
+            payuSubmitButton.disabled = false;
+        }
+    </script>
 </body>
 </html> 
