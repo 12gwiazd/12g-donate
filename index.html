@@ -20,6 +20,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         .payment-column h2 {
             margin-bottom: 20px;
@@ -28,6 +29,13 @@
         .paypal-widget-wrapper {
             text-align: center;
             width: 100%;
+        }
+
+        .paypal-button-container {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
         }
         .payu-widget-wrapper {
             width: 100%;
@@ -71,20 +79,22 @@
                 <div class="payment-column">
                     <h2>Wpłata przez PayPal</h2>
                     <div class="paypal-widget-wrapper">
-                        <script
-                        src="https://www.paypal.com/sdk/js?client-id=BAAXGiJ9InohuNKkofrujQwGbZXxzPl9FB1j2guyFDvJlCixh_cegyR0j5oW2sZIYsZqHM5yza_1vGnFiM&components=hosted-buttons&disable-funding=venmo&currency=PLN">
-                        </script>
-                        
-                        <div id="paypal-container-X4VF849348HHE"></div>
-                        <script>
-                            paypal.HostedButtons({
-                                hostedButtonId: "X4VF849348HHE",
-                            }).render("#paypal-container-X4VF849348HHE")
-                        </script>
+                        <div class="paypal-button-container">
+                            <script
+                            src="https://www.paypal.com/sdk/js?client-id=BAAXGiJ9InohuNKkofrujQwGbZXxzPl9FB1j2guyFDvJlCixh_cegyR0j5oW2sZIYsZqHM5yza_1vGnFiM&components=hosted-buttons&disable-funding=venmo&currency=PLN">
+                            </script>
+                            
+                            <div id="paypal-container-X4VF849348HHE"></div>
+                            <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "X4VF849348HHE",
+                                }).render("#paypal-container-X4VF849348HHE")
+                            </script>
+                        </div>
                     </div>
                 </div>
 
-                <div class="payment-column">
+                <!-- <div class="payment-column">
                     <h2>Wpłata przez PayU</h2>
                     <div class="payu-widget-wrapper">
                         <div class="amount-options">
@@ -133,7 +143,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
