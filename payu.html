@@ -148,7 +148,7 @@
         </div>
 
         <div class="payu-form-container">
-            <form id="payu-form" action="https://secure.payu.com/api/v2_1/orders" method="POST">
+            <form id="payu-form" method="POST" target="_blank">
                 <input type="hidden" name="merchant_id" value="fBk81JaF">
                 <input type="hidden" name="pos_id" value="4366502">
                 <input type="hidden" name="session_id" id="session_id" value="">
@@ -157,7 +157,7 @@
                 <input type="hidden" name="description" value="Wsparcie produkcji filmu 'Marzenie św. Maksymiliana'">
                 <input type="hidden" name="notify_url" value="https://donate.12gwiazd.pl/thankyou.html">
                 <input type="hidden" name="continue_url" value="https://donate.12gwiazd.pl/thankyou.html">
-                <button type="submit" id="payu-submit" class="payu-button">
+                <button type="button" id="payu-submit" class="payu-button">
                     Wpłać przez PayU
                 </button>
             </form>
@@ -184,6 +184,14 @@
         }
 
         initializeForm();
+
+        // Obsługa kliknięcia przycisku PayU
+        payuSubmitButton.addEventListener('click', function() {
+            // Ustawiamy action na endpoint PayU
+            payuForm.action = 'https://secure.payu.com/api/v2_1/orders';
+            // Wysyłamy formularz
+            payuForm.submit();
+        });
 
         amountOptionsPayU.forEach(option => {
             option.addEventListener('change', function() {
