@@ -148,17 +148,16 @@
         </div>
 
         <div class="payu-form-container">
-            <form id="payu-form">
-                <input type="hidden" name="merchant_id" value="TWÓJ_MERCHANT_ID">
-                <input type="hidden" name="pos_id" value="TWÓJ_POS_ID">
+            <form id="payu-form" action="https://secure.payu.com/api/v2_1/orders" method="POST">
+                <input type="hidden" name="merchant_id" value="fBk81JaF">
+                <input type="hidden" name="pos_id" value="4366502">
                 <input type="hidden" name="session_id" id="session_id" value="">
                 <input type="hidden" name="amount" id="payu_amount" value="2500">
                 <input type="hidden" name="currency" value="PLN">
                 <input type="hidden" name="description" value="Wsparcie produkcji filmu 'Marzenie św. Maksymiliana'">
-                <input type="hidden" name="client_ip" value="127.0.0.1">
-                <input type="hidden" name="notify_url" value="https://12gwiazd.pl/notify">
-                <input type="hidden" name="continue_url" value="https://12gwiazd.pl/thank-you">
-                <button type="button" id="payu-submit" class="payu-button" disabled>
+                <input type="hidden" name="notify_url" value="https://donate.12gwiazd.pl/thankyou.html">
+                <input type="hidden" name="continue_url" value="https://donate.12gwiazd.pl/thankyou.html">
+                <button type="submit" id="payu-submit" class="payu-button">
                     Wpłać przez PayU
                 </button>
             </form>
@@ -179,7 +178,12 @@
         const payuSubmitButton = document.getElementById('payu-submit');
         const sessionIdField = document.getElementById('session_id');
 
-        sessionIdField.value = generateSessionId();
+        // Inicjalizacja formularza
+        function initializeForm() {
+            sessionIdField.value = generateSessionId();
+        }
+
+        initializeForm();
 
         amountOptionsPayU.forEach(option => {
             option.addEventListener('change', function() {
@@ -212,10 +216,6 @@
                 payuAmountField.value = 100;
                 payuSubmitButton.disabled = true;
             }
-        });
-
-        payuSubmitButton.addEventListener('click', function() {
-            alert('Aby aktywować płatności PayU, należy:\n1. Zalogować się do panelu PayU\n2. Skonfigurować PayU Button\n3. Dodać odpowiednie klucze API\n4. Odkomentować i dostosować kod inicjalizacji powyżej');
         });
 
         const initialSelectedPayU = document.querySelector('input[name="amount_option_payu"]:checked');
