@@ -167,14 +167,10 @@
 
         // Obsługa kliknięcia przycisku PayU
         payuSubmitButton.addEventListener('click', function() {
-            // Tworzymy nowe okno
-            const payuWindow = window.open('', '_blank');
-            
             // Ustawiamy action na endpoint PayU
             payuForm.action = 'https://secure.payu.com/api/v2_1/orders';
             
-            // Wysyłamy formularz do nowego okna
-            payuForm.target = '_blank';
+            // Wysyłamy formularz
             payuForm.submit();
         });
 
